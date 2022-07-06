@@ -1,4 +1,4 @@
-const { transaksi, Buku, User } = require('../models')
+const { transaksi, Buku, User } = require('../../../models')
 
 module.exports = class {
     // post transaksi

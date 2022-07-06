@@ -1,4 +1,4 @@
-const { Kategori } = require('../models')
+const { Kategori } = require('../../../models')
 
 module.exports = class {
     // tambah data kategori

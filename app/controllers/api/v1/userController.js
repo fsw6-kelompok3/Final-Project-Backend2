@@ -1,7 +1,7 @@
-const { User } = require('../models')
+const { User } = require('../../../models')
 const { Op } = require('sequelize')
 var bcrypt = require('bcrypt');
-const jwt = require('../helper/jwt')
+const jwt = require('../../../helper/jwt')
 
 module.exports = class {
     // add user

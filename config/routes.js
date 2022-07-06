@@ -1,9 +1,9 @@
 const express = require("express");
 const controllers = require("../app/controllers");
 
-const multer = require('../middleware/multer')
-const authUser = require("../middleware/user")
-const authAdmin = require("../middleware/admin")
+const multer = require('../app/middleware/multer')
+const authUser = require('../app/middleware/user')
+const authAdmin = require('../app/middleware/admin')
 
 const appRouter = express.Router();
 const apiRouter = express.Router();

@@ -1,4 +1,4 @@
-const { Buku } = require('../models')
+const { Buku } = require('../../../models')
 const { Op } = require('sequelize')
 
 module.exports = class {
