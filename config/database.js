@@ -29,7 +29,7 @@ module.exports = {
   production: {
     username: DB_USERNAME,
     password: DB_PASSWORD,
-    database: `${DB_NAME}_production`,
+    database: `${DB_NAME}`,
     host: DB_HOST,
     dialect: "postgres",
     dialectOptions: {
