@@ -12,10 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       deskripsi: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       gambar: {
-        type: Sequelize.STRING
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       harga: {
         type: Sequelize.INTEGER

@@ -25,7 +25,7 @@ module.exports = class {
                 where: { id: req.params.id }
             })
 
-            res.status(204).end()
+            res.status(201).json({ msg: "Kategori berhasil dihapus!" })
         } catch (err) {
             res.status(422).json({
                 error: {

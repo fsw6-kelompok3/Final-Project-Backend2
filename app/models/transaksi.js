@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
     }
   }
   transaksi.init({
     id_barang: DataTypes.INTEGER,
     id_user: DataTypes.INTEGER,
-    persetujuan_harga: DataTypes.INTEGER,
+    pesetujuan_harga: DataTypes.INTEGER,
     harga_tawar: DataTypes.INTEGER,
     status_penjualan: DataTypes.BOOLEAN
   }, {

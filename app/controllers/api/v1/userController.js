@@ -1,6 +1,7 @@
 const { User } = require('../../../models')
 const { Op } = require('sequelize')
 var bcrypt = require('bcrypt');
+const cloudinary = require('../../../middleware/cloudinary')
 const jwt = require('../../../helper/jwt')
 
 module.exports = class {
@@ -100,8 +101,7 @@ module.exports = class {
     // get data user by id
     static async getDataUserById(req, res, next) {
         try {
-            const id = req.params.id
-            const user = await User.findByPk(id)
+            const user = await User.findByPk(req.userlogin.id)
             res.status(201).send(user)
         } catch (err) {
             res.status(422).json({
@@ -116,7 +116,7 @@ module.exports = class {
     // edit detail user
     static async editDetailUser(req, res, next) {
         try {
-            const url = `/uploads/${req.file.filename}`
+            // const url = `/uploads/${req.file.filename}`
 
             const {
                 foto,
@@ -125,14 +125,24 @@ module.exports = class {
                 alamat,
                 nohp
             } = req.body
+
+            const imageUpload = await cloudinary.uploader.upload(
+                req.file.path,
+                {
+                    upload_preset: "second_hand",
+                    folder: "second_hand/sh_user"
+                }
+            )
+            const newPath = imageUpload.secure_url
+
             const user = await User.update({
-                foto: url,
+                foto: newPath,
                 nama,
                 kota,
                 alamat,
                 nohp
-            }, { where: { id: req.params.id } })
-            res.status(201).send(user)
+            }, { where: { id: req.userlogin.id } })
+            res.status(201).json({ status: user, informasi: req.body, foto: newPath })
         } catch (err) {
             res.status(422).json({
                 error: {
@@ -149,7 +159,7 @@ module.exports = class {
             await User.destroy({
                 where: { id: req.params.id }
             })
-            res.status(204).end()
+            res.status(201).json({ msg: "Data user berhasil dihapus!" })
         } catch (err) {
             res.status(422).json({
                 error: {

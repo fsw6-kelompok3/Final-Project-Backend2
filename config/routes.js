@@ -18,41 +18,63 @@ appRouter.get("/", controllers.main.index);
  * BUKU
  * ====
  */
+
+// Seller
 apiRouter.get(
-  "/api/v1/buku",
-  controllers.api.v1.bukuController.getAllDataBuku
+  "/seller/buku",
+  authAdmin,
+  controllers.api.v1.bukuController.getAllDataBukuSeller
 )
 apiRouter.post(
-  "/api/v1/buku",
+  "/seller/buku",
   authAdmin,
-  multer.single("gambar"),
+  multer.array("gambar"),
   controllers.api.v1.bukuController.tambahBuku
 )
-apiRouter.get(
-  "/api/v1/buku/:id",
-  controllers.api.v1.bukuController.getDataBukuById
-)
-apiRouter.put(
-  "/api/v1/buku/:id",
-  authAdmin,
-  multer.single("gambar"),
-  controllers.api.v1.bukuController.editDetailBuku
-)
 apiRouter.delete(
-  "/api/v1/buku/:id",
+  "/seller/buku/:id",
   authAdmin,
   controllers.api.v1.bukuController.deleteBuku
 )
 apiRouter.get(
-  "/api/v1/buku/cari",
+  "/seller/terjual",
+  authAdmin,
+  controllers.api.v1.bukuController.filterTerjual
+)
+apiRouter.get(
+  "/seller/diminati",
+  authAdmin,
+  controllers.api.v1.bukuController.filterDiminati
+)
+apiRouter.post(
+  "/seller/buku/:id",
+  authAdmin,
+  multer.array("gambar"),
+  controllers.api.v1.bukuController.editDetailBuku
+)
+
+// User
+apiRouter.get(
+  "/user/buku",
+  controllers.api.v1.bukuController.getAllDataBuku
+)
+apiRouter.get(
+  "/user/buku/:id",
+  controllers.api.v1.bukuController.getDataBukuById
+)
+apiRouter.get(
+  "/cari",
   controllers.api.v1.bukuController.searchBuku
 )
+
 apiRouter.patch(
   "/api/v1/buku/:id/like",
+  authUser,
   controllers.api.v1.bukuController.likeDataBuku
 )
 apiRouter.patch(
   "/api/v1/buku/:id/unlike",
+  authUser,
   controllers.api.v1.bukuController.unlikeDataBuku
 )
 
@@ -64,12 +86,12 @@ apiRouter.patch(
  * ========
  */
 apiRouter.post(
-  "/api/v1/kategori",
+  "/v1/kategori",
   authAdmin,
   controllers.api.v1.kategoriController.tambahKategori
 )
 apiRouter.delete(
-  "/api/v1/kategori/:id",
+  "/v1/kategori/:id",
   authAdmin,
   controllers.api.v1.kategoriController.deleteKategori
 )
@@ -78,9 +100,11 @@ apiRouter.delete(
  * TODO: Implement your own API
  *       implementations
  * =========
- * TRANSAKSI --> HALAMAN USER
+ * TRANSAKSI
  * =========
  */
+
+// Halaman User
 apiRouter.post(
   "/",
   authUser,
@@ -97,13 +121,7 @@ apiRouter.get(
   controllers.api.v1.transaksiController.DetailTransaksiUserId
 )
 
-/**
- * TODO: Implement your own API
- *       implementations
- * =========
- * TRANSAKSI --> HALAMAN SELLER
- * =========
- */
+// Halaman Seller
 apiRouter.get(
   "/seller",
   authAdmin,
@@ -140,30 +158,46 @@ apiRouter.post(
   "/register/admin",
   controllers.api.v1.userController.addAdmin
 )
+
 apiRouter.post(
   "/login",
   controllers.api.v1.userController.login
 )
+
 apiRouter.get(
-  "/api/v1/user/:id",
+  "/v1/admin",
+  authAdmin,
   controllers.api.v1.userController.getDataUserById
 )
-apiRouter.post(
-  "/api/v1/user",
-  multer.single("foto"),
-  controllers.api.v1.userController.addUser
+apiRouter.get(
+  "/v1/user",
+  authUser,
+  controllers.api.v1.userController.getDataUserById
 )
+
 apiRouter.put(
-  "/api/v1/user/:id",
+  "/v1/admin",
+  authAdmin,
   multer.single("foto"),
   controllers.api.v1.userController.editDetailUser
 )
+apiRouter.put(
+  "/v1/user",
+  authUser,
+  multer.single("foto"),
+  controllers.api.v1.userController.editDetailUser
+)
+
 apiRouter.delete(
-  "/api/v1/user/:id",
+  "/v1/admin/:id",
   authAdmin,
   controllers.api.v1.userController.deleteUser
 )
-
+apiRouter.delete(
+  "/v1/user/:id",
+  authUser,
+  controllers.api.v1.userController.deleteUser
+)
 
 /**
  * TODO: Delete this, this is just a demonstration of

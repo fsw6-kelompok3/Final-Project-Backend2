@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Buku.init({
     nama: DataTypes.STRING,
     deskripsi: DataTypes.STRING,
-    gambar: DataTypes.STRING,
+    gambar: DataTypes.ARRAY(DataTypes.STRING),
     harga: DataTypes.INTEGER,
     lokasi: DataTypes.STRING,
     pengarang: DataTypes.STRING,
@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'id_barang',
       as: 'transaksi_user'
     });
+
   }
   return Buku;
 };
