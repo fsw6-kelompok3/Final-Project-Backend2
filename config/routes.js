@@ -10,7 +10,11 @@ const authAdmin = require('../app/middleware/admin')
 const appRouter = express.Router();
 const apiRouter = express.Router();
 
-appRouter.use(cors())
+appRouter.use(cors({
+  credentials: true,
+  origin: 'http://localhost:3000'
+}))
+
 /** Mount GET / handler */
 appRouter.get("/", controllers.main.index);
 
