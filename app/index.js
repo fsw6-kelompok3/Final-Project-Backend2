@@ -13,7 +13,9 @@ const publicDir = path.join(__dirname, "../public");
 const viewsDir = path.join(__dirname, "./views");
 const app = express();
 
-app.use(cors())
+app.use(cors({
+    origin: '*'
+}))
 
 /** Install request logger */
 app.use(morgan("dev"));
