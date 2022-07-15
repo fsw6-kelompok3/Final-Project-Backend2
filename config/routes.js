@@ -12,7 +12,8 @@ const apiRouter = express.Router();
 
 appRouter.use(cors({
   credentials: true,
-  origin: 'http://localhost:3000'
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 }))
 
 /** Mount GET / handler */
