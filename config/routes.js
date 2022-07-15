@@ -1,18 +1,12 @@
 const express = require("express");
 const controllers = require("../app/controllers");
 
-const cors = require('cors')
-
 const multer = require('../app/middleware/multer')
 const authUser = require('../app/middleware/user')
 const authAdmin = require('../app/middleware/admin')
 
 const appRouter = express.Router();
 const apiRouter = express.Router();
-
-appRouter.use(cors({
-  'Access-Control-Allow-Origin': 'http://localhost:3000'
-}))
 
 /** Mount GET / handler */
 appRouter.get("/", controllers.main.index);
