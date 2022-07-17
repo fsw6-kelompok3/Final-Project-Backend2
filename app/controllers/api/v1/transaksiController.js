@@ -1,13 +1,12 @@
 const { transaksi, Buku, User } = require('../../../models')
 
 module.exports = class {
-    // post transaksi
     static async tambahTransaksi(req, res, next) {
         try {
             const hasil = await transaksi.create({
                 id_barang: req.body.id_barang,
                 id_user: req.userlogin.id,
-                pesetujuan_harga: 0,
+                persetujuan_harga: 0,
                 harga_tawar: req.body.harga_tawar,
             })
             res.status(200).send({
@@ -15,23 +14,6 @@ module.exports = class {
                 message: 'Data transaksi berhasil ditambah!',
                 data: hasil
             })
-
-            const {
-                id_barang,
-                id_user,
-                pesetujuan_harga,
-                harga_tawar,
-            } = req.body
-
-            const transaksi = await Transaksi.create({
-                id_barang,
-                id_user,
-                pesetujuan_harga,
-                harga_tawar,
-            })
-
-            res.status(201).json(transaksi)
-
         } catch (err) {
             res.status(422).json({
                 error: {
@@ -132,10 +114,16 @@ module.exports = class {
 
     static async updateTransaksiBerhasil(req, res, next) {
         try {
+            const data = await transaksi.findOne({
+                where: { id: req.params.id }
+            })
+
             const hasil = await transaksi.update(
                 {
-                    status_penjualan: true
+                    status_penjualan: true,
+                    persetujuan_harga: data.harga_tawar
                 }, { where: { id: req.params.id } })
+
             res.status(200).send({
                 status: 200,
                 message: 'Berhasil',

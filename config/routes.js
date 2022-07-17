@@ -39,6 +39,17 @@ apiRouter.post(
   multer.array("gambar"),
   controllers.api.v1.bukuController.tambahBuku
 )
+apiRouter.post(
+  "/seller/buku/:id",
+  authAdmin,
+  multer.array("gambar"),
+  controllers.api.v1.bukuController.editDetailBuku
+)
+apiRouter.get(
+  "/seller/buku/:id",
+  authAdmin,
+  controllers.api.v1.bukuController.getDataBukuByIdSeller
+)
 apiRouter.delete(
   "/seller/buku/:id",
   authAdmin,
@@ -53,12 +64,6 @@ apiRouter.get(
   "/seller/diminati",
   authAdmin,
   controllers.api.v1.bukuController.filterDiminati
-)
-apiRouter.post(
-  "/seller/buku/:id",
-  authAdmin,
-  multer.array("gambar"),
-  controllers.api.v1.bukuController.editDetailBuku
 )
 
 // User
@@ -114,39 +119,39 @@ apiRouter.delete(
 
 // Halaman User
 apiRouter.post(
-  "/",
+  "/transaksi",
   authUser,
   controllers.api.v1.transaksiController.tambahTransaksi
 )
 apiRouter.get(
-  "/",
+  "/transaksi",
   authUser,
   controllers.api.v1.transaksiController.getdataByUserId
 )
 apiRouter.get(
-  "/detail/:id",
+  "/transaksi/detail/:id",
   authUser,
   controllers.api.v1.transaksiController.DetailTransaksiUserId
 )
 
 // Halaman Seller
 apiRouter.get(
-  "/seller",
+  "/transaksi/seller",
   authAdmin,
   controllers.api.v1.transaksiController.getdataBySellerId
 )
 apiRouter.get(
-  "/seller/detail/:id",
+  "/transaksi/seller/detail/:id",
   authAdmin,
   controllers.api.v1.transaksiController.DetailTransaksiHalamanSeller
 )
 apiRouter.put(
-  "/seller/:id",
+  "/transaksi/seller/:id",
   authAdmin,
   controllers.api.v1.transaksiController.updateTransaksiBerhasil
 )
 apiRouter.put(
-  "/seller/:id/batal",
+  "/transaksi/seller/:id/batal",
   authAdmin,
   controllers.api.v1.transaksiController.updateTransaksiBatal
 )
@@ -159,16 +164,16 @@ apiRouter.put(
  * ====
  */
 apiRouter.post(
-  "/register/user",
+  "/auth/register/user",
   controllers.api.v1.userController.addUser
 )
 apiRouter.post(
-  "/register/admin",
+  "/auth/register/admin",
   controllers.api.v1.userController.addAdmin
 )
 
 apiRouter.post(
-  "/login",
+  "/auth/login",
   controllers.api.v1.userController.login
 )
 

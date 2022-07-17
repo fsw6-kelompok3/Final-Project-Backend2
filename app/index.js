@@ -5,6 +5,7 @@
 
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors")
 const path = require("path");
 const router = require("../config/routes");
 
@@ -26,6 +27,13 @@ app.use(morgan("dev"));
 
 /** Install JSON request parser */
 app.use(express.json());
+
+/** Instal Cors */
+app.use(cors({
+    credentials: true,
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+}))
 
 /** Install View Engine */
 app.set("views", viewsDir);
