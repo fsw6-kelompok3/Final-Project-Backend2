@@ -81,12 +81,12 @@ apiRouter.get(
 )
 
 apiRouter.patch(
-  "/api/v1/buku/:id/like",
+  "/v1/buku/:id/like",
   authUser,
   controllers.api.v1.bukuController.likeDataBuku
 )
 apiRouter.patch(
-  "/api/v1/buku/:id/unlike",
+  "/v1/buku/:id/unlike",
   authUser,
   controllers.api.v1.bukuController.unlikeDataBuku
 )
