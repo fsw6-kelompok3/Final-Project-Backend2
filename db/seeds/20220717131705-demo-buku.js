@@ -14,7 +14,7 @@ module.exports = {
         pengarang: 'Tere Liye',
         tahun_terbit: 2016,
         kategori_id: 1,
-        diminati: null,
+        diminati: 0,
         seller_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -80,7 +80,7 @@ module.exports = {
         pengarang: 'Habib Ahmad Shahab',
         tahun_terbit: 2008,
         kategori_id: 2,
-        diminati: null,
+        diminati: 0,
         seller_id: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -112,7 +112,7 @@ module.exports = {
         pengarang: 'Lisa See',
         tahun_terbit: 2005,
         kategori_id: 1,
-        diminati: null,
+        diminati: 0,
         seller_id: 2,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -145,7 +145,7 @@ module.exports = {
         pengarang: 'A.T. Sugeng Piyanto, Djaenudin Harun, Anang Priyanto, Cholisin, Muchson A.R, Dadang Sundawa, Rr. Nanik Setyowati',
         tahun_terbit: 2018,
         kategori_id: 7,
-        diminati: null,
+        diminati: 0,
         seller_id: 2,
         createdAt: new Date(),
         updatedAt: new Date()
