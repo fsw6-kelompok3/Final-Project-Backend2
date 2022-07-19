@@ -17,7 +17,7 @@ module.exports = {
         id_user: 4,
         persetujuan_harga: 0,
         harga_tawar: 79000,
-        status_penjualan: false,
+        status_penjualan: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -26,7 +26,7 @@ module.exports = {
         id_user: 4,
         persetujuan_harga: 75000,
         harga_tawar: 75000,
-        status_penjualan: true,
+        status_penjualan: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -53,7 +53,7 @@ module.exports = {
         id_user: 5,
         persetujuan_harga: 32000,
         harga_tawar: 32000,
-        status_penjualan: true,
+        status_penjualan: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -62,7 +62,7 @@ module.exports = {
         id_user: 5,
         persetujuan_harga: 0,
         harga_tawar: 30000,
-        status_penjualan: false,
+        status_penjualan: null,
         createdAt: new Date(),
         updatedAt: new Date()
       },

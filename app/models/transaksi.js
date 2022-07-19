@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   transaksi.init({
     id_barang: DataTypes.INTEGER,
     id_user: DataTypes.INTEGER,
-    persetujuan_harga: DataTypes.INTEGER,
+    pesetujuan_harga: DataTypes.INTEGER,
     harga_tawar: DataTypes.INTEGER,
     status_penjualan: DataTypes.BOOLEAN
   }, {
@@ -27,9 +27,10 @@ module.exports = (sequelize, DataTypes) => {
   transaksi.associate = function (models) {
     transaksi.belongsTo(models.Buku, {
       foreignKey: 'id_barang',
+      as: 'nama_buku'
     });
-    transaksi.hasMany(models.User, {
-      foreignKey: 'id',
+    transaksi.belongsTo(models.User, {
+      foreignKey: 'id_user',
       as: 'detail_user'
     });
   };

@@ -7,15 +7,16 @@ module.exports = class {
     static async getAllDataBukuSeller(req, res, next) {
         try {
             const page = req.query.page || 1
-            const limit = req.query.pageSize || 2
+            const limit = req.query.pageSize || 8
 
-            const buku = await Buku.findAll({
-                where: { seller_id: req.userlogin.id },
-                limit,
-                offset: (page - 1) * limit,
+            const buku = await User.findAll({
+                where: { id: req.userlogin.id },
+
                 include: [{
-                    model: User,
-                    as: 'penjual_barang',
+                    model: Buku,
+                    as: 'buku',
+                    limit,
+                    offset: (page - 1) * limit,
                 }],
             })
             const bukuCount = await Buku.count();
@@ -40,7 +41,7 @@ module.exports = class {
     static async getAllDataBuku(req, res, next) {
         try {
             const page = req.query.page || 1
-            const limit = req.query.pageSize || 2
+            const limit = req.query.pageSize || 8
 
             const buku = await Buku.findAll({
                 limit,
@@ -235,7 +236,7 @@ module.exports = class {
     static async searchBuku(req, res, next) {
         try {
             const page = req.query.page || 1
-            const limit = req.query.pageSize || 2
+            const limit = req.query.pageSize || 8
 
             const buku = await Buku.findAll({
                 limit,
@@ -306,16 +307,19 @@ module.exports = class {
     static async filterDiminati(req, res, next) {
         try {
             const page = req.query.page || 1
-            const limit = req.query.pageSize || 2
+            const limit = req.query.pageSize || 8
 
-            const buku = await Buku.findAll({
-                where: { seller_id: req.userlogin.id },
-                order: [
-                    ['diminati', 'DESC'],
-                ],
-                limit,
-                offset: (page - 1) * limit,
-
+            const buku = await User.findAll({
+                where: { id: req.userlogin.id },
+                include: [{
+                    model: Buku,
+                    as: 'buku',
+                    order: [
+                        ['diminati', 'DESC'],
+                    ],
+                    limit,
+                    offset: (page - 1) * limit,
+                }],
             })
             const bukuCount = await Buku.count();
 
@@ -343,15 +347,22 @@ module.exports = class {
             const page = req.query.page || 1
             const limit = req.query.pageSize || 2
 
-            const buku = await Buku.findAll({
-                where: { seller_id: req.userlogin.id },
+            const buku = await User.findAll({
+                where: { id: req.userlogin.id },
                 include: [{
-                    model: transaksi,
-                    where: { status_penjualan: true },
-                    as: 'transaksi_user',
+                    model: Buku,
+                    as: 'buku',
+                    order: [
+                        ['diminati', 'DESC'],
+                    ],
+                    limit,
+                    offset: (page - 1) * limit,
+                    include: [{
+                        model: transaksi,
+                        where: { status_penjualan: true },
+                        as: 'transaksi_user',
+                    }],
                 }],
-                limit,
-                offset: (page - 1) * limit,
 
             })
             const bukuCount = await Buku.count();

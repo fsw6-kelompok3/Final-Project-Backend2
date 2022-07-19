@@ -1,12 +1,13 @@
 const { transaksi, Buku, User } = require('../../../models')
 
 module.exports = class {
+    // post transaksi
     static async tambahTransaksi(req, res, next) {
         try {
             const hasil = await transaksi.create({
                 id_barang: req.body.id_barang,
                 id_user: req.userlogin.id,
-                persetujuan_harga: 0,
+                pesetujuan_harga: 0,
                 harga_tawar: req.body.harga_tawar,
             })
             res.status(200).send({
@@ -47,13 +48,16 @@ module.exports = class {
 
     static async getdataBySellerId(req, res, next) {
         try {
-            const hasil = await Buku.findAll({
-                where: { seller_id: req.userlogin.id },
+            const hasil = await transaksi.findAll({
+                where: { status_penjualan: null },
+                subQuery: true,
+                order: [
+                    ['id', 'DESC'],
+                ],
                 include: [{
-                    model: transaksi,
-                    where: { status_penjualan: null },
-                    subQuery: true,
-                    as: 'transaksi_user',
+                    model: Buku,
+                    where: { seller_id: req.userlogin.id },
+                    as: 'nama_buku',
 
                 }],
             })
@@ -121,7 +125,7 @@ module.exports = class {
             const hasil = await transaksi.update(
                 {
                     status_penjualan: true,
-                    persetujuan_harga: data.harga_tawar
+                    pesetujuan_harga: data.harga_tawar
                 }, { where: { id: req.params.id } })
 
             res.status(200).send({
