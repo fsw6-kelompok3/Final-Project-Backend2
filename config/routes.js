@@ -108,6 +108,10 @@ apiRouter.delete(
   authAdmin,
   controllers.api.v1.kategoriController.deleteKategori
 )
+apiRouter.get(
+  "/v1/kategori",
+  controllers.api.v1.kategoriController.getAllDataKategori
+)
 
 /**
  * TODO: Implement your own API
