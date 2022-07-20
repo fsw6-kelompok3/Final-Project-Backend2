@@ -6,8 +6,8 @@ module.exports = class {
     // get all data buku by Seller Id
     static async getAllDataBukuSeller(req, res, next) {
         try {
-            const page = req.query.page || 1
-            const limit = req.query.pageSize || 8
+            // const page = req.query.page || 1
+            // const limit = req.query.pageSize || 8
 
             const buku = await User.findAll({
                 where: { id: req.userlogin.id },
@@ -15,8 +15,8 @@ module.exports = class {
                 include: [{
                     model: Buku,
                     as: 'buku',
-                    limit,
-                    offset: (page - 1) * limit,
+                    // limit,
+                    // offset: (page - 1) * limit,
                 }],
             })
             const bukuCount = await Buku.count();
@@ -24,8 +24,8 @@ module.exports = class {
             res.status(201).json({
                 data: buku,
                 total_data: bukuCount,
-                pageSize: limit,
-                currentPage: page
+                // pageSize: limit,
+                //currentPage: page
             })
         } catch (err) {
             res.status(422).json({
@@ -40,20 +40,20 @@ module.exports = class {
     //get all data buku for user
     static async getAllDataBuku(req, res, next) {
         try {
-            const page = req.query.page || 1
-            const limit = req.query.pageSize || 8
+            // const page = req.query.page || 1
+            // const limit = req.query.pageSize || 8
 
             const buku = await Buku.findAll({
-                limit,
-                offset: (page - 1) * limit,
+                // limit,
+                // offset: (page - 1) * limit,
             })
             const bukuCount = await Buku.count();
 
             res.status(201).json({
                 data: buku,
                 total_data: bukuCount,
-                pageSize: limit,
-                currentPage: page
+                // pageSize: limit,
+                // currentPage: page
             })
         } catch (err) {
             res.status(422).json({
@@ -235,12 +235,12 @@ module.exports = class {
     // search data buku
     static async searchBuku(req, res, next) {
         try {
-            const page = req.query.page || 1
-            const limit = req.query.pageSize || 8
+            // const page = req.query.page || 1
+            // const limit = req.query.pageSize || 8
 
             const buku = await Buku.findAll({
-                limit,
-                offset: (page - 1) * limit,
+                // limit,
+                // offset: (page - 1) * limit,
                 where: {
                     nama: {
                         [Op.iRegexp]: req.query.nama
@@ -252,8 +252,8 @@ module.exports = class {
             res.status(201).json({
                 data: buku,
                 total_data: bukuCount,
-                pageSize: limit,
-                currentPage: page
+                // pageSize: limit,
+                // currentPage: page
             })
         } catch (err) {
             res.status(422).json({
@@ -306,8 +306,8 @@ module.exports = class {
     // filter data buku diminati
     static async filterDiminati(req, res, next) {
         try {
-            const page = req.query.page || 1
-            const limit = req.query.pageSize || 8
+            // const page = req.query.page || 1
+            // const limit = req.query.pageSize || 8
 
             const buku = await User.findAll({
                 where: { id: req.userlogin.id },
@@ -317,8 +317,8 @@ module.exports = class {
                     order: [
                         ['diminati', 'DESC'],
                     ],
-                    limit,
-                    offset: (page - 1) * limit,
+                    // limit,
+                    // offset: (page - 1) * limit,
                 }],
             })
             const bukuCount = await Buku.count();
@@ -326,8 +326,8 @@ module.exports = class {
             res.status(201).json({
                 data: buku,
                 total_data: bukuCount,
-                pageSize: limit,
-                currentPage: page
+                // pageSize: limit,
+                // currentPage: page
 
             })
         } catch (err) {
@@ -344,8 +344,8 @@ module.exports = class {
     // filter data buku terjual
     static async filterTerjual(req, res, next) {
         try {
-            const page = req.query.page || 1
-            const limit = req.query.pageSize || 2
+            //const page = req.query.page || 1
+            //const limit = req.query.pageSize || 2
 
             const buku = await User.findAll({
                 where: { id: req.userlogin.id },
@@ -355,8 +355,8 @@ module.exports = class {
                     order: [
                         ['diminati', 'DESC'],
                     ],
-                    limit,
-                    offset: (page - 1) * limit,
+                    //limit,
+                    // offset: (page - 1) * limit,
                     include: [{
                         model: transaksi,
                         where: { status_penjualan: true },
@@ -370,8 +370,8 @@ module.exports = class {
             res.status(201).json({
                 data: buku,
                 total_data: bukuCount,
-                pageSize: limit,
-                currentPage: page
+                // pageSize: limit,
+                // currentPage: page
 
             })
         } catch (err) {

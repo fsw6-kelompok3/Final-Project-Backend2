@@ -35,4 +35,24 @@ module.exports = class {
             })
         }
     }
+
+    // get all data kategori
+    static async getAllDataKategori(req, res, next) {
+        try {
+            const kategori = await Kategori.findAll()
+            const kategoriCount = await Kategori.count();
+
+            res.status(201).json({
+                data: kategori,
+                total_data: kategoriCount,
+            })
+        } catch (err) {
+            res.status(422).json({
+                error: {
+                    name: err.name,
+                    message: err.message
+                }
+            })
+        }
+    }
 }
