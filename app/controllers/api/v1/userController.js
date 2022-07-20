@@ -1,5 +1,4 @@
 const { User } = require('../../../models')
-const { Op } = require('sequelize')
 var bcrypt = require('bcrypt');
 const cloudinary = require('../../../middleware/cloudinary')
 const jwt = require('../../../helper/jwt')
@@ -93,7 +92,7 @@ module.exports = class {
                     data: result,
                 })
             })
-            .catch((result) => {
+            .catch((err) => {
                 res.status(400).send(err)
             })
     }
