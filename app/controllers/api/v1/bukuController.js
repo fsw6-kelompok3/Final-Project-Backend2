@@ -388,11 +388,8 @@ module.exports = class {
     static async filterKategori(req, res, next) {
         try {
             const buku = await Buku.findAll({
-                where: {
-                    kategori_id: req.body.kategori_id
-                }
+                where: { kategori_id: req.body.kategori_id }
             })
-
             res.status(201).json(buku)
         } catch (err) {
             res.status(422).json({
