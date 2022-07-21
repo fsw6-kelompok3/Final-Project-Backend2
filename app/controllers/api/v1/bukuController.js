@@ -384,11 +384,11 @@ module.exports = class {
         }
     }
 
-    // get buku by kategori
+    //get buku by kategori
     static async GetBukubyKategori(req, res, next) {
         try {
             const hasil = await Buku.findAll({
-                where: { id: req.body.id },
+                where: { kategori_id: req.body.kategori_id },
             })
             res.status(200).send({
                 status: 200,

@@ -80,7 +80,7 @@ apiRouter.get(
   controllers.api.v1.bukuController.searchBuku
 )
 apiRouter.get(
-  "/user/buku/kategori",
+  "/user/buku",
   controllers.api.v1.bukuController.GetBukubyKategori
 )
 
