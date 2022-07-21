@@ -384,20 +384,24 @@ module.exports = class {
         }
     }
 
-    // filter data buku by kategori
-    static async filterKategori(req, res, next) {
+    // get buku by kategori
+    static async GetBukubyKategori(req, res, next) {
         try {
-            const buku = await Buku.findAll({
-                where: { kategori_id: req.body.kategori_id }
+            const hasil = await Buku.findAll({
+                include: [{
+                    model: Kategori,
+                    where: { jenis_buku: req.body.jenis_buku },
+                    as: 'kategori',
+                }],
             })
-            res.status(201).json(buku)
-        } catch (err) {
-            res.status(422).json({
-                error: {
-                    name: err.name,
-                    message: err.message
-                }
+            res.status(200).send({
+                status: 200,
+                message: 'Berhasil',
+                data: hasil
             })
+        } catch (error) {
+            console.log(error);
+            res.status(500).send(error)
         }
     }
 }

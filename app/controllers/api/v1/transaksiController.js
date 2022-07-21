@@ -28,11 +28,14 @@ module.exports = class {
 
     static async getdataByUserId(req, res, next) {
         try {
-            const hasil = await Buku.findAll({
+            const hasil = await transaksi.findAll({
+                where: { id_user: req.userlogin.id },
+                order: [
+                    ['id', 'DESC'],
+                ],
                 include: [{
-                    model: transaksi,
-                    where: { id_user: req.userlogin.id },
-                    as: 'transaksi_user'
+                    model: Buku,
+                    as: 'nama_buku'
                 }],
             })
             res.status(200).send({
@@ -145,6 +148,34 @@ module.exports = class {
                 {
                     status_penjualan: false
                 }, { where: { id: req.params.id } })
+            res.status(200).send({
+                status: 200,
+                message: 'Berhasil',
+                data: hasil
+            })
+        } catch (error) {
+            console.log(error);
+            res.status(500).send(error)
+        }
+    }
+
+    static async GetBukubyKategori(req, res, next) {
+        try {
+            const hasil = await Buku.findAll({
+                where: { seller_id: req.userlogin.id },
+                include: [{
+                    model: transaksi,
+                    where: { id: req.params.id },
+                    as: 'transaksi_user',
+                    include: [
+                        {
+                            model: User,
+                            as: 'detail_user',
+                        },
+                    ],
+
+                }],
+            })
             res.status(200).send({
                 status: 200,
                 message: 'Berhasil',

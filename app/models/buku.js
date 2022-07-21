@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
   Buku.associate = function (models) {
     Buku.belongsTo(models.Kategori, {
       sourceKey: 'KategoriId',
-      foreignKey: 'kategori_id'
+      foreignKey: 'kategori_id',
+      as: 'kategori'
     });
     Buku.hasMany(models.transaksi, {
       foreignKey: 'id_barang',

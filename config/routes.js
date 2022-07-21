@@ -81,7 +81,7 @@ apiRouter.get(
 )
 apiRouter.get(
   "/user/buku/kategori",
-  controllers.api.v1.bukuController.filterKategori
+  controllers.api.v1.bukuController.GetBukubyKategori
 )
 
 apiRouter.patch(
