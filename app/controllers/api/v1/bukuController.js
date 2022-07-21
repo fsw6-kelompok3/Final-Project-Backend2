@@ -388,11 +388,7 @@ module.exports = class {
     static async GetBukubyKategori(req, res, next) {
         try {
             const hasil = await Buku.findAll({
-                include: [{
-                    model: Kategori,
-                    where: { jenis_buku: req.body.jenis_buku },
-                    as: 'kategori',
-                }],
+                where: { kategori_id: req.body.kategori_id },
             })
             res.status(200).send({
                 status: 200,
