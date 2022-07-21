@@ -79,6 +79,10 @@ apiRouter.get(
   "/cari",
   controllers.api.v1.bukuController.searchBuku
 )
+apiRouter.get(
+  "/user/buku/kategori",
+  controllers.api.v1.bukuController.filterKategori
+)
 
 apiRouter.patch(
   "/v1/buku/:id/like",

@@ -383,4 +383,24 @@ module.exports = class {
             })
         }
     }
+
+    // filter data buku by kategori
+    static async filterKategori(req, res, next) {
+        try {
+            const buku = await Buku.findAll({
+                where: {
+                    kategori: req.body.kategori
+                }
+            })
+
+            res.status(201).json(buku)
+        } catch (err) {
+            res.status(422).json({
+                error: {
+                    name: err.name,
+                    message: err.message
+                }
+            })
+        }
+    }
 }
