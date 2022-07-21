@@ -1,4 +1,4 @@
-const { Buku, transaksi, User } = require('../../../models')
+const { Buku, transaksi, User, Kategori } = require('../../../models')
 const { Op } = require('sequelize')
 const cloudinary = require('../../../middleware/cloudinary')
 
