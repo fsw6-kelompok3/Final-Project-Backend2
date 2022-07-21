@@ -389,7 +389,7 @@ module.exports = class {
         try {
             const buku = await Buku.findAll({
                 where: {
-                    kategori: req.body.kategori
+                    kategori_id: req.body.kategori_id
                 }
             })
 
