@@ -7,7 +7,7 @@ module.exports = class {
             const hasil = await transaksi.create({
                 id_barang: req.body.id_barang,
                 id_user: req.userlogin.id,
-                pesetujuan_harga: 0,
+                persetujuan_harga: 0,
                 harga_tawar: req.body.harga_tawar,
             })
             res.status(200).send({
@@ -128,7 +128,7 @@ module.exports = class {
             const hasil = await transaksi.update(
                 {
                     status_penjualan: true,
-                    pesetujuan_harga: data.harga_tawar
+                    persetujuan_harga: data.harga_tawar
                 }, { where: { id: req.params.id } })
 
             res.status(200).send({
