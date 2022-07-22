@@ -387,17 +387,25 @@ module.exports = class {
     //get buku by kategori
     static async GetBukubyKategori(req, res, next) {
         try {
-            const hasil = await Buku.findAll({
-                where: { kategori_id: req.body.kategori_id },
+            const buku = await Buku.findAll({
+                // limit,
+                // offset: (page - 1) * limit,
             })
-            res.status(200).send({
-                status: 200,
-                message: 'Berhasil',
-                data: hasil
+            const bukuCount = await Buku.count();
+
+            res.status(201).json({
+                data: buku,
+                total_data: bukuCount,
+                // pageSize: limit,
+                // currentPage: page
             })
-        } catch (error) {
-            console.log(error);
-            res.status(500).send(error)
+        } catch (err) {
+            res.status(422).json({
+                error: {
+                    name: err.name,
+                    message: err.message
+                }
+            })
         }
     }
 }
