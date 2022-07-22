@@ -79,7 +79,7 @@ apiRouter.get(
   "/cari",
   controllers.api.v1.bukuController.searchBuku
 )
-apiRouter.get(
+apiRouter.post(
   "/user/kategori",
   controllers.api.v1.bukuController.GetBukubyKategori
 )
