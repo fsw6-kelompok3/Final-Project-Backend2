@@ -52,7 +52,6 @@ module.exports = class {
     static async getdataBySellerId(req, res, next) {
         try {
             const hasil = await transaksi.findAll({
-                where: { status_penjualan: null },
                 subQuery: true,
                 order: [
                     ['id', 'DESC'],
