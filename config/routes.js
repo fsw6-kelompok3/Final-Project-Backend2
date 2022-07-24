@@ -149,7 +149,7 @@ apiRouter.get(
   controllers.api.v1.transaksiController.getdataBySellerId
 )
 apiRouter.get(
-  "/transaksi/detail/:id",
+  "/transaksi/detail/seller/:id",
   authAdmin,
   controllers.api.v1.transaksiController.DetailTransaksiHalamanSeller
 )
