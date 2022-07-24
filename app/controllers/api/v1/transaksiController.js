@@ -98,10 +98,9 @@ module.exports = class {
                     model: transaksi,
                     where: { id: req.params.id },
                     as: 'transaksi_user',
-                    include: {
-                        model: User,
-                        as: 'detail_user',
-                    },
+                }, include: {
+                    model: User,
+                    as: 'detail_user',
                 },
             })
             res.status(200).send({
