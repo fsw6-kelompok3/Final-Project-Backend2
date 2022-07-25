@@ -14,7 +14,7 @@ const viewsDir = path.join(__dirname, "./views");
 const app = express();
 
 var allowCrossDomain = function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'https://localhost:3000');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
     next();
 };
@@ -30,7 +30,7 @@ app.use(express.json());
 /** Instal Cors */
 app.use(cors({
     credentials: true,
-    origin: 'https://localhost:3000',
+    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 }))
 
