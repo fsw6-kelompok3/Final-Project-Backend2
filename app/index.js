@@ -30,7 +30,7 @@ app.use(express.json());
 /** Instal Cors */
 app.use(cors({
     credentials: true,
-    origin: ['https://secondhandbook.vercel.app', 'http://localhost:3000'],
+    origin: 'https://secondhandbook.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 }))
 
