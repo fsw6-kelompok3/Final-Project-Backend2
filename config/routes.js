@@ -12,7 +12,7 @@ const apiRouter = express.Router();
 
 appRouter.use(cors({
   credentials: true,
-  origin: 'https://secondhandbook.vercel.app',
+  origin: 'https://localhost:3000',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
 }))
 
